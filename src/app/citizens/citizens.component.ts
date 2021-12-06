@@ -9,17 +9,21 @@ import { CitizenService } from './citizen.service';
 })
 export class CitizensComponent implements OnInit {
   selected: Citizen;
-  citizens$: Observable<Citizen[]>;
+  citizens: Citizen[];
   message = '?';
   citizenToDelete: Citizen;
   showModal = false;
 
-  constructor(private citizenService: CitizenService) {
-    this.citizens$ = citizenService.entities$;
-  }
+  constructor(private citizenService: CitizenService) {}
 
   ngOnInit() {
     this.getCitizens();
+
+    this.citizenService.entities$.subscribe({
+      next: (citizens) => {
+        this.citizens = citizens;
+      },
+    });
   }
 
   add(citizen: Citizen) {

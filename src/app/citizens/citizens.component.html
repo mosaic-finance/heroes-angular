@@ -5,7 +5,7 @@
     (refresh)="getCitizens()"
   ></app-list-header>
   <div class="columns is-multiline is-variable">
-    <div class="column is-8" *ngIf="citizens$ | async as citizens">
+    <div class="column is-8" *ngIf="citizens">
       <app-citizen-list
         *ngIf="!selected"
         [citizens]="citizens"
